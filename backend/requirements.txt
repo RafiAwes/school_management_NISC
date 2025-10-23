@@ -1,0 +1,29 @@
+# Django and core tools
+Django>=5.2.7,<6.0
+djangorestframework==3.15.2
+django-cors-headers==4.3.1
+django-environ==0.11.2
+
+# Database
+psycopg==3.2.10  # PostgreSQL driver
+
+# Authentication & Users
+djangorestframework-simplejwt==5.3.1
+
+# Async tasks (optional but useful)
+celery==5.4.0
+redis==5.0.4
+
+# For API docs
+drf-spectacular==0.27.1
+
+# For production
+gunicorn==23.0.0
+whitenoise==6.7.0
+
+# For testing
+pytest==8.3.3
+pytest-django==4.8.0
+
+# dotenv
+python-dotenv
