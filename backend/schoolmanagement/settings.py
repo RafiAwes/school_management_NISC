@@ -14,14 +14,24 @@ load_dotenv()
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "t")
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",") if os.getenv("ALLOWED_HOSTS") else [
+#     "localhost",
+#     "127.0.0.1",
+#     "[::1]",
+#     "backend",
+#     "host.docker.internal",
+# ]
 
+# CROSS_ALLOW_ORIGINS = os.getenv("CROSS_ALLOW_ORIGINS", "False").lower() in ("true", "1", "t")
+CROSS_ALLOW_HEADERS = os.getenv("CROSS_ALLOW_HEADERS", "*").split(",") if os.getenv("CROSS_ALLOW_HEADERS") else ['*']
+CROSS_ALLOW_METHODS = os.getenv("CROSS_ALLOW_METHODS").split(",") if os.getenv("CROSS_ALLOW_METHODS") else ['DELETE', 'GET', 'OPTIONS', 'PATCH', 'POST', 'PUT']
 
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -36,9 +46,12 @@ INSTALLED_APPS = [
     "apps.attendance",
     "apps.assignments",
     "apps.announcements",
+    "rest_framework",
+    "rest_framework.authtoken",   
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -47,6 +60,19 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# CORS configuration
+# In development allow all origins for convenience. In production, set stricter origins.
+CORS_ALLOW_CREDENTIALS = True
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    # Allow the frontend dev server and localhost by default in non-debug mode
+    CORS_ALLOWED_ORIGINS = os.getenv("CROSS_ALLOW_ORIGINS", "").split(",") 
+    # [
+    #     "http://localhost:3000",
+    #     "http://127.0.0.1:3000",
+    # ]
 
 ROOT_URLCONF = "schoolmanagement.urls"
 
@@ -65,7 +91,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "schoolmanagement.wsgi.application"
+WSGI_APPLICATION = os.getenv("WSGI_APPLICATION", "schoolmanagement.wsgi.application")
 
 
 # Database
@@ -116,6 +142,10 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+
+# Avoid redirect-on-POST errors when a trailing slash is missing (e.g., /api/users/register)
+# This prevents Django's CommonMiddleware from attempting to 301/302 append a slash on POSTs, which drops payloads.
+APPEND_SLASH = False
 
 
 # Static files (CSS, JavaScript, Images)
