@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.exceptions import ParseError
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -23,7 +24,15 @@ class registerView(APIView):
         except Exception:
             logger.debug("register called — unable to log request.data")
 
-        serializers = RegistrationSerializer(data=request.data)
+        # Safely access parsed data and handle JSON parse errors to log raw body
+        try:
+            parsed_data = request.data
+        except ParseError as e:
+            raw = request.body.decode("utf-8", errors="replace")
+            logger.error("JSON parse error on register: %s", raw)
+            return Response({"detail": "Invalid JSON payload"}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializers = RegistrationSerializer(data=parsed_data)
         if serializers.is_valid():
             user = serializers.save()
             token, created = Token.objects.get_or_create(user=user)
@@ -39,6 +48,7 @@ class registerView(APIView):
 
         # Log validation errors to diagnose 400 responses
         logger.warning("register validation errors: %s", serializers.errors)
+        logger.debug("register serializer errors: %s", serializers.errors)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
        
 class loginView(APIView):
@@ -50,7 +60,14 @@ class loginView(APIView):
         except Exception:
             logger.debug("login called — unable to log request.data")
 
-        serializers = LoginSerializer(data=request.data)
+        try:
+            parsed_data = request.data
+        except ParseError:
+            raw = request.body.decode("utf-8", errors="replace")
+            logger.error("JSON parse error on login: %s", raw)
+            return Response({"detail": "Invalid JSON payload"}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializers = LoginSerializer(data=parsed_data)
         if serializers.is_valid():
             user = serializers.validated_data["user"]
             token, created = Token.objects.get_or_create(user=user)
@@ -65,4 +82,5 @@ class loginView(APIView):
                 "token": token.key,
             }, status=status.HTTP_200_OK)
 
+        logger.debug("login serializer errors: %s", serializers.errors)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)

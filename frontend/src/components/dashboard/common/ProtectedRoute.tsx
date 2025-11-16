@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation"
 export function ProtectedRoute({children}: {children: React.ReactNode}){
     const router = useRouter()
     useEffect(() => {
-        const token = localStorage.getItem("token")
-        if(!token){
+        // The login flow stores the JWT in localStorage under 'authToken'
+        const token = localStorage.getItem("authToken")
+        if (!token) {
             router.push("/auth/login")
         }
     }, [router])
