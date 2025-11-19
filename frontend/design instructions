@@ -1,0 +1,611 @@
+# School Management System - Complete Design System Prompt
+
+Use this prompt when continuing development to maintain a consistent design across the entire project.
+
+---
+
+## 📋 Project Context
+
+**Project Name:** School Management System  
+**Tech Stack:** Next.js 14, React, TypeScript, Tailwind CSS  
+**Target Users:** Teachers, Students, Parents, Administrators  
+**Design Philosophy:** Modern, Clean, Professional, User-Friendly
+
+---
+
+## Design System Specifications
+
+### **Color Palette**
+
+#### Primary Colors
+- **Indigo-600**: `#4F46E5` - Main brand color, primary buttons, active states
+- **Purple-600**: `#9333EA` - Secondary brand color, gradients
+- **Indigo-700**: `#4338CA` - Hover states for primary elements
+- **Purple-700**: `#7E22CE` - Hover states for secondary elements
+
+#### Gradient Combinations
+```css
+/* Primary Gradient (Used for headers, buttons, icons) */
+bg-gradient-to-r from-indigo-600 to-purple-600
+bg-gradient-to-br from-indigo-600 to-purple-600
+bg-gradient-to-b from-indigo-600 to-purple-600
+
+/* Light Gradient (Used for backgrounds) */
+bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100
+bg-gradient-to-r from-indigo-50 to-purple-50
+
+/* Avatar/Icon Gradients */
+bg-gradient-to-br from-blue-400 to-blue-600
+bg-gradient-to-br from-indigo-500 to-purple-500
+```
+
+#### Semantic Colors
+- **Success/Active**: `green-500` (#10B981), `green-600` (#059669), `green-100` (#D1FAE5)
+- **Warning**: `orange-500` (#F97316), `orange-600` (#EA580C), `orange-100` (#FFEDD5)
+- **Error/Danger**: `red-500` (#EF4444), `red-600` (#DC2626), `red-50` (#FEF2F2)
+- **Info**: `blue-500` (#3B82F6), `blue-600` (#2563EB), `blue-100` (#DBEAFE)
+
+#### Neutral Colors
+- **Gray-50**: `#F9FAFB` - Light backgrounds
+- **Gray-100**: `#F3F4F6` - Cards, subtle backgrounds
+- **Gray-200**: `#E5E7EB` - Borders, dividers
+- **Gray-300**: `#D1D5DB` - Disabled states
+- **Gray-400**: `#9CA3AF` - Icons, placeholders
+- **Gray-500**: `#6B7280` - Secondary text
+- **Gray-600**: `#4B5563` - Body text
+- **Gray-700**: `#374151` - Dark text
+- **Gray-800**: `#1F2937` - Headings, important text
+
+---
+
+### **Typography**
+
+#### Font Family
+- **Primary Font**: System fonts (default Tailwind stack)
+```css
+font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
+```
+
+#### Font Sizes (Responsive)
+```typescript
+// Mobile -> Desktop
+text-xs     // 0.75rem (12px)
+text-sm     // 0.875rem (14px)
+text-base   // 1rem (16px)
+text-lg     // 1.125rem (18px)
+text-xl     // 1.25rem (20px)
+text-2xl    // 1.5rem (24px) -> 1.875rem (30px) on sm:
+text-3xl    // 1.875rem (30px) -> 2.25rem (36px) on sm:
+```
+
+#### Font Weights
+- **font-medium**: 500 - Labels, important text
+- **font-semibold**: 600 - Subheadings, emphasis
+- **font-bold**: 700 - Headings, titles
+
+#### Heading Styles
+```typescript
+// Page Title (H1)
+className="text-2xl sm:text-3xl font-bold text-gray-800"
+
+// Section Title (H2)
+className="text-xl font-bold text-gray-800"
+
+// Card Title (H3)
+className="text-lg font-bold text-gray-800"
+
+// Small Heading (H4)
+className="text-base font-semibold text-gray-800"
+```
+
+---
+
+### **Spacing System**
+
+#### Container Padding
+```typescript
+// Page containers
+className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+
+// Section spacing
+py-6 sm:py-8  // Top/bottom padding
+```
+
+#### Component Spacing
+```typescript
+// Between sections
+space-y-6    // 1.5rem (24px)
+space-y-8    // 2rem (32px)
+
+// Between cards/items
+space-y-3 sm:space-y-4  // Responsive spacing
+
+// Component gaps
+gap-3 sm:gap-4  // Grid gaps
+gap-4 sm:gap-6  // Larger grid gaps
+```
+
+---
+
+### **Component Styles**
+
+#### Buttons
+
+**Primary Button**
+```typescript
+className="flex items-center space-x-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-colors shadow-lg"
+```
+
+**Secondary Button**
+```typescript
+className="flex items-center space-x-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+```
+
+**Ghost/Outline Button**
+```typescript
+className="flex items-center space-x-2 border-2 border-gray-200 rounded-lg hover:border-indigo-600 transition-colors p-3"
+```
+
+**Icon Button**
+```typescript
+className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+```
+
+#### Cards
+
+**Standard Card**
+```typescript
+className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow"
+```
+
+**Interactive Card**
+```typescript
+className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 sm:p-6"
+```
+
+**Stat Card**
+```typescript
+className="bg-white rounded-lg shadow-sm p-4"
+```
+
+#### Input Fields
+
+**Text Input**
+```typescript
+className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none text-sm"
+```
+
+**Select Dropdown**
+```typescript
+className="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none bg-white text-sm"
+```
+
+#### Badges/Tags
+
+**Status Badge**
+```typescript
+// Success
+className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium"
+
+// Warning
+className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium"
+
+// Info
+className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium"
+```
+
+#### Progress Bars
+
+**Attendance Progress**
+```typescript
+// Container
+className="w-full bg-gray-200 rounded-full h-2"
+
+// Fill (color based on percentage)
+// >= 90: bg-green-500
+// >= 75: bg-yellow-500
+// < 75: bg-red-500
+```
+
+#### Avatars
+
+**User Avatar (with initials)**
+```typescript
+className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm"
+
+// Sizes
+w-10 h-10  // Small (40px)
+w-12 h-12  // Medium (48px)
+w-16 h-16  // Large (64px)
+w-20 h-20  // Extra Large (80px)
+```
+
+---
+
+### **Layout Patterns**
+
+#### Page Structure
+```typescript
+<div className="min-h-screen bg-gray-50">
+  {/* Header - Sticky */}
+  <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      {/* Header content */}
+    </div>
+  </div>
+  
+  {/* Main Content */}
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+    {/* Content */}
+  </div>
+</div>
+```
+
+#### Dashboard Layout
+```typescript
+<div className="flex bg-gray-50 min-h-screen">
+  {/* Sidebar */}
+  <div className="w-64 bg-gradient-to-b from-indigo-600 to-purple-600 text-white fixed h-screen">
+    {/* Sidebar content */}
+  </div>
+  
+  {/* Main Content */}
+  <div className="ml-64 flex-1">
+    {/* Header */}
+    <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+      {/* Header content */}
+    </div>
+    
+    {/* Content */}
+    <main className="p-6">
+      {/* Main content */}
+    </main>
+  </div>
+</div>
+```
+
+---
+
+### **Responsive Breakpoints**
+
+```typescript
+// Mobile First Approach
+sm:   640px   // Small devices (tablets)
+md:   768px   // Medium devices (landscape tablets)
+lg:   1024px  // Large devices (laptops)
+xl:   1280px  // Extra large devices (desktops)
+2xl:  1536px  // 2X large devices (large desktops)
+```
+
+#### Responsive Grid Patterns
+```typescript
+// Cards/Items Grid
+grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6
+
+// Stats Cards
+grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4
+
+// Two Column Layout
+flex-col lg:flex-row gap-6
+```
+
+---
+
+### **Animation & Transitions**
+
+#### Standard Transitions
+```typescript
+// All transitions
+transition-all duration-200
+
+// Specific properties
+transition-colors
+transition-shadow
+transition-transform
+```
+
+#### Hover Effects
+```typescript
+// Cards
+hover:shadow-md
+
+// Buttons
+hover:bg-indigo-700
+hover:scale-[1.02]
+
+// Links/Text
+hover:text-indigo-700
+```
+
+#### Loading Spinner
+```typescript
+<div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+```
+
+---
+
+### **Icons**
+
+**Library:** lucide-react  
+**Size Standards:**
+- Small icons: `w-4 h-4` (16px)
+- Regular icons: `w-5 h-5` (20px)
+- Large icons: `w-6 h-6` (24px)
+- Header icons: `w-8 h-8` (32px)
+
+**Common Icon Colors:**
+- Default: `text-gray-400` or `text-gray-600`
+- Active: `text-indigo-600`
+- Success: `text-green-500`
+- Warning: `text-orange-500`
+- Error: `text-red-500`
+
+---
+
+### **Shadow System**
+
+```typescript
+// Light shadows
+shadow-sm     // Subtle shadow for cards
+shadow        // Default shadow
+
+// Medium shadows
+shadow-md     // Hover state for cards
+shadow-lg     // Elevated elements, buttons
+
+// Large shadows
+shadow-xl     // Modals, overlays
+```
+
+---
+
+### **Border Radius**
+
+```typescript
+rounded-lg    // 0.5rem (8px) - Default for most elements
+rounded-xl    // 0.75rem (12px) - Cards, containers
+rounded-2xl   // 1rem (16px) - Large cards, modals
+rounded-full  // Badges, avatars, pills
+```
+
+---
+
+## Component-Specific Design Rules
+
+### **Sidebar (Dashboard)**
+- Background: `bg-gradient-to-b from-indigo-600 to-purple-600`
+- Text: `text-white`
+- Active item: `bg-white text-indigo-600 shadow-lg`
+- Hover: `hover:bg-white/10`
+- Width: `w-64` (expanded), `w-20` (collapsed)
+
+### **Header/Navigation**
+- Background: `bg-white`
+- Border: `border-b border-gray-200`
+- Sticky: `sticky top-0 z-10`
+- Shadow: `shadow-sm`
+
+### **Tables**
+- Header: `bg-gray-50`
+- Row hover: `hover:bg-gray-50`
+- Border: `border-b border-gray-100`
+- Header text: `text-sm font-semibold text-gray-600`
+
+### **Forms**
+- Label: `text-sm font-medium text-gray-700`
+- Error text: `text-sm text-red-500`
+- Focus ring: `focus:ring-2 focus:ring-indigo-500`
+
+### **Modals/Overlays**
+- Backdrop: `bg-black/50`
+- Container: `bg-white rounded-2xl shadow-xl`
+- Max width: `max-w-md` or `max-w-2xl`
+
+---
+
+## 📱 Mobile-Specific Guidelines
+
+### **Mobile Menu**
+- Use hamburger icon (Menu from lucide-react)
+- Slide-in sidebar from left
+- Overlay backdrop on mobile
+- Full-screen mobile navigation
+
+### **Touch Targets**
+- Minimum size: `44x44px` (11x11 in Tailwind)
+- Button padding: `py-2.5 px-4`
+- Icon buttons: `p-2.5` minimum
+
+### **Mobile Typography**
+- Reduce font sizes on mobile
+- Use responsive classes: `text-2xl sm:text-3xl`
+- Maintain readability (min 14px for body text)
+
+---
+
+## Color Usage Guidelines
+
+### **When to Use Each Color**
+
+#### Indigo (Primary)
+- Primary buttons and CTAs
+- Active navigation items
+- Grade badges
+- Important stats
+- Links and interactive elements
+
+#### Purple (Secondary)
+- Gradients combined with indigo
+- Secondary emphasis
+- Decorative elements
+
+#### Green
+- Success states
+- Active status
+- High performance (90%+ attendance)
+- Completed assignments
+- Positive trends
+
+#### Orange/Yellow
+- Warning states
+- Attention needed (75-89% attendance)
+- Pending items
+- Moderate priority
+
+#### Red
+- Error states
+- Critical issues (< 75% attendance)
+- Overdue items
+- Delete actions
+
+#### Gray
+- Text hierarchy
+- Borders and dividers
+- Disabled states
+- Backgrounds
+
+---
+
+## Text Hierarchy
+
+```typescript
+// Page Title
+"text-2xl sm:text-3xl font-bold text-gray-800"
+
+// Section Title
+"text-xl font-bold text-gray-800"
+
+// Subsection Title
+"text-lg font-semibold text-gray-800"
+
+// Body Text (Primary)
+"text-base text-gray-600"
+
+// Body Text (Secondary)
+"text-sm text-gray-500"
+
+// Caption/Helper Text
+"text-xs text-gray-400"
+
+// Link Text
+"text-indigo-600 hover:text-indigo-700 font-medium"
+
+##  Spacing Standards
+
+### **Component Internal Spacing**
+```typescript
+// Card padding
+p-4        // Mobile
+p-6        // Desktop
+
+// Section spacing
+space-y-6  // Between major sections
+space-y-4  // Between related items
+space-y-2  // Between tightly related items
+
+// Inline spacing
+space-x-2  // Small gaps (icons + text)
+space-x-3  // Medium gaps
+space-x-4  // Larger gaps
+```
+
+### **Page Margins**
+```typescript
+// Horizontal
+px-4 sm:px-6 lg:px-8
+
+// Vertical
+py-6 sm:py-8
+```
+
+---
+
+## State Management Visuals
+
+### **Loading State**
+- Show spinner: Indigo-600 animated spinner
+- Disable interactions
+- Reduce opacity: `opacity-50`
+
+### **Empty State**
+- Gray-100 icon background
+- Gray-400 icon
+- Descriptive message
+- Optional CTA button
+
+### **Error State**
+- Red-50 background
+- Red-600 text/icon
+- Clear error message
+- Action button if applicable
+
+### **Success State**
+- Green-50 background
+- Green-600 icon
+- Confirmation message
+- Auto-dismiss or manual close
+
+---
+
+## Notification/Alert Styles
+
+```typescript
+// Info Alert
+"p-3 bg-blue-50 border border-blue-200 rounded-lg"
+
+// Success Alert
+"p-3 bg-green-50 border border-green-200 rounded-lg"
+
+// Warning Alert
+"p-3 bg-orange-50 border border-orange-200 rounded-lg"
+
+// Error Alert
+"p-3 bg-red-50 border border-red-200 rounded-lg"
+```
+
+---
+
+## Accessibility Requirements
+
+- Minimum contrast ratio: 4.5:1 for normal text
+- Focus indicators: Always visible `focus:ring-2`
+- Keyboard navigation: All interactive elements accessible
+- Screen reader labels: Use aria-labels where needed
+- Touch targets: Minimum 44x44px
+- Color not sole indicator: Use icons + text
+
+---
+
+## Design Checklist for New Components
+
+When creating new components, ensure:
+
+Uses established color palette (indigo/purple/gray)
+Follows responsive breakpoints (mobile-first)
+Implements proper hover/focus states
+Uses consistent spacing (4, 6, 8 scale)
+Includes loading and error states
+Has proper typography hierarchy
+Uses appropriate shadows and borders
+Follows established border-radius standards
+Includes status indicators with colors + icons
+Is accessible (keyboard, screen reader, contrast)
+
+---
+
+## Usage Instructions
+
+**When developing new features:**
+1. Copy relevant sections from this design system
+2. Maintain color consistency (indigo/purple primary)
+3. Use established component patterns
+4. Follow responsive guidelines
+5. Test on mobile, tablet, and desktop
+6. Ensure accessibility standards are met
+
+**Example Prompt for New Feature:**
+"Create a [feature name] using the School Management System design system. Use the indigo-600 to purple-600 gradient for primary elements, gray-50 for backgrounds, maintain responsive breakpoints (sm, md, lg), follow the card style (bg-white rounded-xl shadow-sm p-6), and ensure mobile-first responsive design."
+
+---
+
+This design system ensures visual consistency across the entire School Management System project. Reference this document when creating new features or components.
