@@ -73,7 +73,7 @@ Whether you're a small school or a large educational institution, this system of
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/School_management_system.git
+   git clone https://github.com/RafiAwes/School_management_system.git
    cd School_management_system
    ```
 
