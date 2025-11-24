@@ -8,7 +8,15 @@ export interface Student {
     attendance: number;
     grade: string;
     status: 'active' | 'warning' | 'inactive';
-    avatar?: string;
+    image?: string;
+    phone?: string;
+    enrollmentDate?: string;
+    dateOfBirth?: string;
+    address?: string;
+    parentName?: string;
+    parentEmail?: string;
+    parentPhone?: string;
+
 }
 
 export interface StudentDetail extends Student {
@@ -17,4 +25,16 @@ export interface StudentDetail extends Student {
     parentEmail?: string;
     enrollmentDate: string;
     assignments: Assignment[];
+}
+
+export interface StudentFilters {
+    searchQuery: string;
+    filterClass: string;
+}
+
+export interface PaginationInfo {
+    currentPage: number;
+    itemsPerPage: number;
+    totalItems: number;
+    totalPages: number;
 }
