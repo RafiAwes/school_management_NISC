@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     "apps.attendance",
     "apps.assignments",
     "apps.announcements",
+    "apps.classes",
+    "apps.holidays",
+    "apps.classSubjects",
+    "apps.academicCalendar",
     "rest_framework",
     "rest_framework.authtoken",   
 ]

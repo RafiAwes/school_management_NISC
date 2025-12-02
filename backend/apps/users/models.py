@@ -28,12 +28,16 @@ class User(AbstractUser):
         ('teacher', 'Teacher'),
         ('student', 'Student'),
     )
-
-    full_name = models.CharField(max_length=150)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    role = models.CharField(max_length=10, choices=USER_ROLES)
     email = models.EmailField(unique=True)
+    role = models.CharField(max_length=10, choices=USER_ROLES)
+    phone  = models.CharField(max_length=15, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     objects = UserManager()
 

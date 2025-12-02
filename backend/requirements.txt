@@ -27,3 +27,6 @@ pytest-django==4.8.0
 
 # dotenv
 python-dotenv
+
+#for image
+pillow==12.0.0
