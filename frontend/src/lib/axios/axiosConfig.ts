@@ -1,5 +1,4 @@
 import axios from 'axios'
-import error from 'console';
 
 const axiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000',
@@ -11,7 +10,7 @@ const axiosInstance = axios.create({
 });
 
 //request interceptor- add auth token
-axios.interceptors.request.use(
+axiosInstance.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('authToken');
         if (token) {
