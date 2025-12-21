@@ -1,0 +1,7 @@
+
+<!-- for attendance -->
+GET  /api/classes/                                    # Get teacher's classes
+GET  /api/attendance/students/?class={id}&date={date} # Get students for attendance
+GET  /api/attendance/?class={id}&date={date}          # Get existing attendance
+POST /api/attendance/                                  # Submit attendance
+PATCH /api/attendance/{id}/         
